@@ -1,0 +1,84 @@
+version: "3.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - show_opening_hours
+  - show_menu
+  - start_order
+  - place_order
+  - affirm_pickup
+  - affirm_delivery
+  - provide_address
+  - complete_order
+
+entities:
+  - day_of_week
+  - hour
+  - meals
+
+actions:
+  - action_display_opening_hours
+  - action_display_menu
+  - utter_ask_order
+  - action_summarize_order
+  - utter_confirm_pickup
+  - utter_ask_address
+  - action_summarize_delivery
+  - utter_goodbye_completed
+
+forms:
+  restaurant_form:
+    required_slots:
+      - meals
+
+slots:
+  meals:
+    type: text
+    mappings:
+      - type: from_text
+  address:
+    type: text
+    mappings:
+      - type: from_text
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_ask_order:
+  - text: "Please write down your order. Required format: [quantity] [menu item name] [additional information]"
+
+  utter_confirm_pickup:
+    - text: "Your order has been placed. We will let you know when the order is ready to be picked up."
+
+  utter_ask_address:
+    - text: "Please provide an address for your delivery. Required format: [street name] [building number] [city]"
+
+  utter_goodbye_completed:
+    - text: "Thank you for for interest in our services!"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

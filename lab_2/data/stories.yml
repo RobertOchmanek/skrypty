@@ -1,0 +1,64 @@
+version: "3.0"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: display opening hours
+  steps:
+  - intent: show_opening_hours
+  - action: action_display_opening_hours
+
+- story: display menu
+  steps:
+  - intent: show_menu
+  - action: action_display_menu
+
+- story: placing order
+  steps:
+  - intent: start_order
+  - action: utter_ask_order
+  - intent: place_order
+  - action: action_summarize_order
+
+- story: order pickup
+  steps:
+  - intent: affirm_pickup
+  - action: utter_confirm_pickup
+
+- story: order delivery
+  steps:
+  - intent: affirm_delivery
+  - action: utter_ask_address
+  - intent: provide_address
+  - action: action_summarize_delivery
+
+- story: order completed
+  steps:
+  - intent: complete_order
+  - action: utter_goodbye_completed
