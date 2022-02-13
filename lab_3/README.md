@@ -1,4 +1,5 @@
 To run this game:
+
  - Node.js should be installed
  - `npm install phaser`
  - `npm install -g parcel-bundler`
