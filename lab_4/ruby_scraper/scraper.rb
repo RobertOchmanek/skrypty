@@ -35,7 +35,7 @@ articles = parsedPage.xpath("//article[contains(@class, 'mx7m_1 mnyp_co mlkp_ag 
 
 #Create .csv file to store scraped data
 CSV.open("articles.csv", "a+") do |csv|
-    csv << ["name", "price", "description", "url"]
+    csv << ["name", "price", "url", "description"]
 
     #For each article obtain name and price and visit it's page
     articles.each do |article|
@@ -49,18 +49,18 @@ CSV.open("articles.csv", "a+") do |csv|
 
         #From article page obtain description and url
         if visitUrl.include? "allegrolokalnie"
+            articleUrl = parsedArticlePage.xpath('//link[@rel="canonical"]/@href')
+
             rawDescription = parsedArticlePage.xpath("//div[contains(@class, 'offer-page__description overflow-wrap')]")
             description = rawDescription.text.gsub(/\n/, ' ').gsub(/\s+/, ' ').strip
-
-            articleUrl = parsedArticlePage.xpath('//link[@rel="canonical"]/@href')
         else
+            articleUrl = parsedArticlePage.xpath('//link[@rel="canonical"]/@href')
+
             rawDescription = parsedArticlePage.xpath("//div[contains(@class, '_1h7wt msts_9u _0d3bd_1NgnH')]")
             description = rawDescription.text.gsub(/\n/, ' ').gsub(/\s+/, ' ').strip
-
-            articleUrl = parsedArticlePage.xpath('//link[@rel="canonical"]/@href')
         end
 
-        csv << [name.text, price.text, description, articleUrl]
+        csv << [name.text, price.text, articleUrl, description]
     end
 end
 
