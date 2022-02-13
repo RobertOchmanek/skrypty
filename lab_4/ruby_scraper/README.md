@@ -1,4 +1,5 @@
-#To run this Allegro scraper:
+To run this Allegro scraper:
+
  - Ruby 2.7.x should be installed
  - from project root directory run 
      - `gem install bundler` 
